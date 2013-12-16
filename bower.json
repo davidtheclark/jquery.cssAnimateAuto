@@ -1,0 +1,29 @@
+{
+  "name": "jquery.cssAnimateAuto",
+  "main": "jquery.cssAnimateAuto.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/davidtheclark/jquery.cssAnimateAuto",
+  "authors": [
+    "David Clark <david.dave.clark@gmail.com>"
+  ],
+  "description": "A jQuery plugin for animating (with CSS transitions) an element's height or width from something to `auto`, or from `auto` to something.",
+  "keywords": [
+    "jQuery",
+    "animate",
+    "auto",
+    "height",
+    "width"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>jQuery.cssAnimateAuto Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="cssTestDist.css">
+  </head>
+  <body>
+
+    <h1>css-animate auto tests</h1>
+
+    <h2>height</h2>
+
+    <h3>full width</h3>
+    <button id="trigger-h-full">reveal</button>
+    <div id="content-h-full" class="content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <h3>restricted width</h3>
+    <button id="trigger-h-restricted">reveal</button>
+    <div id="content-h-restricted" class="content restricted-width">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <h2>width</h2>
+
+    <p><em>Width only works if the content has a fixed height, or a min-height and content that will not exceed that min-height as width expands.</em></p>
+
+    <h3>restricted height</h3>
+    <button id="trigger-w-restricted">reveal</button>
+    <div id="content-w-restricted" class="content m-width restricted-height">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, eaque, sapiente, modi consequatur veniam laborum atque deleniti nihil iste obcaecati dicta tempora excepturi sunt blanditiis rerum debitis quis dolor possimus.</div>
+
+    <h3>min height</h3>
+    <button id="trigger-w-min">reveal</button>
+    <div id="content-w-min" class="content m-width min-height">a</div>
+
+    <h2>options</h2>
+
+    <h3>open and close only</h3>
+
+    <button id="trigger-open">open only (string)</button>
+    <button id="trigger-close">close only (string)</button>
+    <button id="trigger-open-option">open only (option)</button>
+    <button id="trigger-close-option">close only (option)</button>
+    <div id="content-open-close" class="content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <h3>closed height</h3>
+    <button id="trigger-closed-height">reveal</button>
+    <div id="content-closed-height" class="content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <h3>open class</h3>
+    <button id="trigger-open-class">reveal</button>
+    <div id="content-open-class" class="content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <h3>different transitions</h3>
+
+    <h4>speed</h4>
+    <button id="trigger-speed">test (string)</button>
+    <button id="trigger-speed-option">test (option)</button>
+    <div id="content-speed" class="content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <h4>easing</h4>
+    <button id="trigger-easing">easing (string)</button>
+    <button id="trigger-easing-option">easing (option)</button>
+    <div id="content-easing" class="content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <h4>callback</h4>
+    <button id="trigger-callback">callback</button>
+    <button id="trigger-callback-open">callback open</button>
+    <button id="trigger-callback-close">callback close (option)</button>
+    <button id="trigger-callback-external">callback (external)</button>
+    <div id="content-callback" class="content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <script src="../jquery.cssAnimateAuto.js"></script>
+    <script src="cssTest.js"></script>
+  </body>
+</html>

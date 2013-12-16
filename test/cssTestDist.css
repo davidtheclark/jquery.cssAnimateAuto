@@ -1,0 +1,33 @@
+body {
+  padding-bottom: 20em;
+}
+
+.content {
+  background: lightblue;
+  height: 0;
+  overflow: hidden;
+}
+.content.m-width {
+  height: auto;
+  width: 0;
+}
+
+.content.restricted-width {
+  max-width: 20em;
+}
+
+.content.restricted-height {
+  height: 5em;
+}
+
+.content.min-height {
+  min-height: 5em;
+}
+
+.content.is-active {
+  background: red;
+}
+
+.content.is-green {
+  background: green !important;
+}
