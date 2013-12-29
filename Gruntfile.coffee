@@ -6,7 +6,7 @@ module.exports = (grunt) ->
     autoprefixer:
       cssAnimateTest:
         files:
-          "test/cssTestDist.css": "test/cssTestDev.css"
+          "test/cssTest.css": "test/cssTest.css"
 
     connect:
       server:

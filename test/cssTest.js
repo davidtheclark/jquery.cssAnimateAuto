@@ -50,16 +50,14 @@ $('#trigger-close-option').click(function() {
 // closed height
 
 $('#trigger-closed-height').click(function() {
-  $('#content-closed-height').cssAnimateAuto({
-    closed: 30
-  });
+  $('#content-closed-height').cssAnimateAuto();
 });
 
 // open class
 
 $('#trigger-open-class').click(function() {
   $('#content-open-class').cssAnimateAuto({
-    openClass: 'is-active'
+    openClass: 'different-open-class'
   });
 });
 
@@ -83,7 +81,7 @@ $('#trigger-easing').click(function() {
 
 $('#trigger-easing-option').click(function() {
   $('#content-easing').cssAnimateAuto({
-    transition: 'height 0.3s steps(4, end)'
+    transition: 'height 0.5s steps(4, end)'
   });
 });
 

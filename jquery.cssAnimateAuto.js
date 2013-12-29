@@ -1,16 +1,5 @@
 ;(function($) {
 
-  // css-only adaptation from http://davidwalsh.name/vendor-prefix
-  var cssPrefix = (function () {
-    var styles = window.getComputedStyle(document.documentElement, ''),
-      pre = (Array.prototype.slice
-        .call(styles)
-        .join('')
-        .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
-      )[1];
-    return '-' + pre + '-';
-  })();
-
   function cssAnimateAuto(element, options, callback) {
 
     var $el = $(element),
@@ -34,14 +23,12 @@
     }
 
     function createTransition($el) {
-      // Create the transition (here instead of in the CSS
-      // so it can easily be removed here).
-      var cssTransitionProp = cssPrefix + 'transition';
-      $el.css(cssTransitionProp, settings.transition);
+      // Create the transition (here in JS instead of in the CSS
+      // so it can easily be removed here in JS).
+      $el.css('transition', settings.transition);
     }
     function removeTransition($el) {
-      var cssTransitionProp = cssPrefix + 'transition';
-      $el.css(cssTransitionProp, '');
+      $el.css('transition', '');
     }
 
     function getTargetDimension($el) {
@@ -111,19 +98,17 @@
   }
 
   function processArgs() {
-    // User can pass arguments in any order.
-    // `options` are plugins-specific settings.
+    // Arguments can be passed in any order.
     // The options `transition` and `action` can also
     // be passed as isolated strings.
     var options = {},
-        callback = function(){};
-    var l = arguments.length;
-    for (var i=0;i<l;i++) {
+        callback = function(){},
+        l = arguments.length;
+    for (var i = 0; i < l; i++) {
       var arg = arguments[i],
           argType = typeof arg;
-      if (!arg) {
+      if (!arg)
         continue;
-      }
       switch (argType) {
         case ('string'):
           if (arg === 'open' || arg === 'close' || arg === 'toggle') {

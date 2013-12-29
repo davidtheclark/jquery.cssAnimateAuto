@@ -1,0 +1,26 @@
+.content {
+  background: lightgray;
+  height: 0;
+  overflow: hidden;
+}
+
+.content.m-width {
+  width: 0;
+}
+
+#content-w-restricted {
+  height: 50px;
+}
+
+#content-w-min {
+  min-height: 50px;
+}
+
+#content-closed-height {
+  height: 30px;
+}
+
+.different-open-class {
+  background: black;
+  color: white;
+}
