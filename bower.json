@@ -23,7 +23,10 @@
     "_site",
     ".sass-cache",
     "test",
-    "tests"
+    "tests",
+    "Gruntfile.coffee",
+    "package.json",
+    "src/"
   ],
   "dependencies": {
     "jquery": "*"
