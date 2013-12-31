@@ -4,9 +4,21 @@ A jQuery plugin for *using CSS transitions* to animate an element's height or wi
 
 If you want to use jQuery animation instead of CSS transitions, take a look at [jquery.animateAuto](https://github.com/davidtheclark/jquery.animateAuto).
 
+## Why you need this
+
+You, like everybody else, enjoy making things slide open and closed -- but *neither CSS nor jQuery allow you to slide dimensions to `auto`, and very often that's exactly what you need to do*.
+
+You have tried various workarounds (e.g. CSS-transitioning `max-height` instead of `height`) but have been annoyed by their limitations and weaknesses. Perhaps you have already found a JavaScript snippet for solving this problem, but the snippet eventually disappointed you, in one way or another, and you once again cursed under your breath.
+
+So: **Let's stop messing around and develop an open-source jQuery plugin that solves, thoroughly and satisfactorily, this silly problem.**
+
+That is what this simple plugin aspires to be.
+
+(If, however, this plugin has not solved the problem for you, if you are still dissatisfied, still resorting to workarounds, please contribute and make the plugin better!)
+
 ## Show Me
 
-[View the demonstration.](http://davidtheclark.github.io/jquery.cssAnimateAuto)
+[Please observe the demonstration.](http://davidtheclark.github.io/jquery.cssAnimateAuto)
 
 ## Arguments
 
@@ -29,9 +41,7 @@ Pass an object argument and it will be interpreted as `options`. The default opt
 }
 ```
 
-These defaults can be modified for your project by changing `$.fn.cssAnimateAuto.defaults`.
-
-Some options can be passed as isolated strings, also, as specified below.
+**These defaults can be modified for your project by changing `$.fn.cssAnimateAuto.defaults`.**
 
 The following options are available:
 
@@ -39,13 +49,13 @@ The following options are available:
 
 - type: `String`
 - default: `'height 0.3s'`
-- passed as: an isolated string or part of the Options object.
+- passed as: a string *or* part of the Options object.
  
 A value for [the CSS shorthand property `transition`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition).
 
-The `transition-property` value can be `width` or `height`, and everything else should work just like in CSS.
+The `transition-property` value must be `width` or `height`, and all the other parameters should work just like in CSS.
 
-If you want to animate width, be warned that *width only works if the content has a fixed height, or a min-height and content that will not exceed that min-height as width expands.*
+Note this: If you want to animate width, be warned that *width only works if the content has a fixed height, or a min-height and content that will not exceed that min-height as width expands.*
 
 ```javascript
 // e.g.
@@ -59,8 +69,8 @@ $('#element').cssAnimateAuto({
 
 - type: `String`
 - default: `'toggle'`
-- options: `'height'`, `'open'`, `'close'`
-- passed as: an isolated string or part of the Options object.
+- options: `'toggle'`, `'open'`, `'close'`
+- passed as: a string *or* part of the Options object.
 
 Which action should be performed?
 
