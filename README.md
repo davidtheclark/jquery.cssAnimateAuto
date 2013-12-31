@@ -12,6 +12,15 @@ So: **Let's stop messing around and develop an open-source jQuery plugin that so
 
 That is what this simple plugin aspires to be.
 
+### Some issues addressed
+- Standard jQuery plugin structure, with modifiable defaults.
+- Customizable CSS transitioning.
+- Transition is applied with JavaScript and removed when it's finished.
+- Callbacks!
+- Height/width value to animate to should be accurately calculated by creating a clone, appended to the original element's parent, with the same opposite dimension value as the original element. Once the animation is complete, this provisional value is removed and the dimension is left at `auto`, in case the size must adjust later.
+- Flexible arguments (see below).
+- An `openClass` is applied (and removed in turn) to allow for compound effects (e.g. after the height slides open, the content fades in).
+
 (If, however, this plugin has not solved the problem for you, if you are still dissatisfied, still resorting to workarounds, please contribute and make the plugin better!)
 
 ## Show Me
