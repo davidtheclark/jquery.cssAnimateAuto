@@ -14,6 +14,16 @@ module.exports = (grunt) ->
           port: 9000
           base: "./"
 
+    copy:
+      dist:
+        files:
+          "dist/jquery.cssAnimateAuto.js": "jquery.cssAnimateAuto.js"
+
+    uglify:
+      dist:
+        files:
+          "dist/jquery.min.cssAnimateAuto.js": "jquery.cssAnimateAuto.js"
+
     watch:
       livereload:
         options:
@@ -28,9 +38,15 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks "grunt-contrib-connect"
   grunt.loadNpmTasks "grunt-contrib-watch"
+  grunt.loadNpmTasks "grunt-contrib-copy"
+  grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-autoprefixer"
 
   grunt.registerTask "dev", [
     "connect"
     "watch"
+  ]
+  grunt.registerTask "build", [
+    "copy:dist"
+    "uglify:dist"
   ]
