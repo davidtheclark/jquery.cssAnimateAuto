@@ -171,3 +171,8 @@ $('#element').cssAnimateAuto('open', function() {
 // Change the default openClass for your project
 $.fn.cssAnimateAuto.defaults.openClass = 'my-different-class';
 ```
+
+## References
+
+- [CSS-Tricks: "Animate Height/Width to 'Auto'" (article and comments)](http://css-tricks.com/snippets/jquery/animate-heightwidth-to-auto/)
+- [Nikita Vasilyev: "CSS transition from/to auto values"](http://n12v.com/css-transition-to-from-auto/)
