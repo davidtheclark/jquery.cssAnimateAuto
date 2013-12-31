@@ -17,12 +17,12 @@ module.exports = (grunt) ->
     copy:
       dist:
         files:
-          "dist/jquery.cssAnimateAuto.js": "jquery.cssAnimateAuto.js"
+          "dist/jquery.cssAnimateAuto.js": "src/jquery.cssAnimateAuto.js"
 
     uglify:
       dist:
         files:
-          "dist/jquery.min.cssAnimateAuto.js": "jquery.cssAnimateAuto.js"
+          "dist/jquery.cssAnimateAuto.min.js": "src/jquery.cssAnimateAuto.js"
 
     watch:
       livereload:
