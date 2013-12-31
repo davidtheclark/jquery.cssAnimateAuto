@@ -2,6 +2,10 @@
 
 A jQuery plugin that *uses CSS transitions* to animate an element's height or width to `auto`.
 
+## Installation
+
+Get the files in the `dist/` directory or install with [Bower](http://bower.io): `bower install jquery.cssAnimateAuto --save-dev`.
+
 ## Why you need this
 
 You, like everybody else, enjoy making things slide open and closed -- but *neither CSS nor jQuery allow you to slide dimensions to `auto`, and very often that's exactly what you need to do*.
