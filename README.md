@@ -4,7 +4,11 @@ A jQuery plugin that *uses CSS transitions* to animate an element's height or wi
 
 ## Installation
 
-Get the files in the `dist/` directory or install with [Bower](http://bower.io): `bower install jquery.cssAnimateAuto --save-dev`.
+Get the files in the `dist/` directory OR install with [Bower](http://bower.io): `bower install jquery.cssAnimateAuto --save-dev`.
+
+## Demonstration
+
+[Please observe the demonstration.](http://davidtheclark.github.io/jquery.cssAnimateAuto)
 
 ## Why you need this
 
@@ -12,30 +16,26 @@ You, like everybody else, enjoy making things slide open and closed -- but *neit
 
 You have tried various workarounds (e.g. CSS-transitioning `max-height` instead of `height`) but have been annoyed by their limitations and weaknesses. Perhaps you have already found a JavaScript snippet for solving this problem, but the snippet eventually disappointed you, in one way or another, and you once again cursed under your breath.
 
-So: **Let's stop messing around and develop an open-source jQuery plugin that solves, thoroughly and satisfactorily, this silly problem.**
+So: **Let's stop messing around and develop an open-source jQuery plugin that solves this silly problem, as well as it can be solved.**
 
 That is what this simple plugin aspires to be.
 
-### Some issues addressed
+Here are some issues I've had with other snippets, which I've tried to take care of in this plugin:
 - Standard jQuery plugin structure, with modifiable defaults.
 - Customizable CSS transitioning.
 - Transition is applied with JavaScript and removed when it's finished.
-- Callbacks!
-- Height/width value to animate to should be accurately calculated by creating a clone, appended to the original element's parent, with the same opposite dimension value as the original element. Once the animation is complete, this provisional value is removed and the dimension is left at `auto`, in case the size must adjust later.
+- You can use callbacks!
+- Height/width value to animate to should be accurately calculated by creating a clone, appended to the original element's parent, with the same opposite dimension value as the original element. Once the animation is complete, this provisional value is removed and the dimension is left at `auto`, in case the page layout adjusts later.
 - Flexible arguments (see below).
 - An `openClass` is applied (and removed in turn) to allow for compound effects (e.g. after the height slides open, the content fades in).
 
-(If, however, this plugin has not solved the problem for you, if you are still dissatisfied, still resorting to workarounds, please contribute and make the plugin better!)
-
-## Show Me
-
-[Please observe the demonstration.](http://davidtheclark.github.io/jquery.cssAnimateAuto)
+(If, however, this plugin has not solved all the problems that *you* have run into, if you are still dissatisfied, still resorting to workarounds you don't like, please contribute and make the plugin better!)
 
 ## Arguments
 
 The following arguments **are all optional** and can be passed **in any order**.
 
-You might also consider skipping to the examples at the bottom, especially if you've seen this before.
+You might also consider skipping to the examples below, especially if you've been here before.
 
 
 ### Options
