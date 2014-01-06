@@ -33,11 +33,13 @@
             stuffToDo();
             callback();
           }
-        });
+        })
+        .data('transitioning', true);
     }
 
     function removeTransition($el) {
-      $el.css('transition', '');
+      $el.css('transition', '')
+        .data('transitioning', false);
     }
 
     function getTargetDimension($el) {
@@ -134,6 +136,9 @@
   $.fn.cssAnimateAuto = function() {
     var argsArray = processArgs.apply(this, arguments);
     return this.each(function () {
+      // If element is already transitioning, ignore.
+      if ($(this).data('transitioning'))
+        return;
       cssAnimateAuto.apply(null, [this].concat(argsArray));
     });
   };
