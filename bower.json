@@ -1,6 +1,8 @@
 {
   "name": "jquery.cssAnimateAuto",
-  "main": "jquery.cssAnimateAuto.js",
+  "main": [
+    "src/jquery.cssAnimateAuto.js"
+  ],
   "version": "0.2.2",
   "homepage": "https://github.com/davidtheclark/jquery.cssAnimateAuto",
   "authors": [
@@ -9,6 +11,7 @@
   "description": "A jQuery plugin that uses CSS transitions to animate an element's height or width to auto",
   "keywords": [
     "jQuery",
+    "animation",
     "animate",
     "auto",
     "height",
