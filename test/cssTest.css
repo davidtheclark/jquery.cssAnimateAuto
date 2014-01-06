@@ -4,6 +4,10 @@
   overflow: hidden;
 }
 
+#content-h-restricted {
+  width: 200px;
+}
+
 .content.m-width {
   width: 0;
 }

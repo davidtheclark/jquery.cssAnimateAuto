@@ -20,7 +20,6 @@ $('#trigger-w-restricted').click(function() {
   });
 });
 
-
 // options -------
 
 // open only

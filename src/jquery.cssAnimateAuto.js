@@ -22,11 +22,20 @@
         throw new Error('jquery.cssAnimateAuto only performs the actions "open", "close" and "toggle". You seem to have tried something else.');
     }
 
-    function createTransition($el) {
+    function createTransition($el, stuffToDo) {
       // Create the transition (here in JS instead of in the CSS
       // so it can easily be removed here in JS).
-      $el.css('transition', settings.transition);
+      // jQuery will provide the requisite vendor prefixes.
+      $el.css('transition', settings.transition)
+        .one('transitionend webkitTransitionEnd', function(e) {
+          if (e.originalEvent.propertyName === dimension) {
+            removeTransition($el);
+            stuffToDo();
+            callback();
+          }
+        });
     }
+
     function removeTransition($el) {
       $el.css('transition', '');
     }
@@ -56,14 +65,9 @@
         // Create a transition, set a one-time event
         // for the transition's end, then change
         // the dimension.
-        createTransition($el);
-        $el.one('transitionend webkitTransitionEnd', function(e) {
-          if (e.originalEvent.propertyName === dimension) {
-            removeTransition($el);
-            $el.css(dimension, 'auto');
-            $el.addClass(settings.openClass);
-            callback();
-          }
+        createTransition($el, function(e) {
+          $el.css(dimension, 'auto');
+          $el.addClass(settings.openClass);
         });
         $el.css(dimension, getTargetDimension($el));
       }
@@ -76,24 +80,17 @@
       // change the dimension.
       $el.css(dimension, $el.css(dimension));
       $el[0].offsetHeight; // force repaint (http://n12v.com/css-transition-to-from-auto/)
-      createTransition($el);
-      $el.one('transitionend webkitTransitionEnd', function(e) {
-        if (e.originalEvent.propertyName === dimension) {
-          removeTransition($el);
-          $el.removeClass(settings.openClass);
-          callback();
-        }
+      createTransition($el, function(e) {
+        $el.removeClass(settings.openClass);
       });
       $el.css(dimension, '');
     }
 
     function toggleEl($el) {
-      if ($el.hasClass(settings.openClass)) {
+      if ($el.hasClass(settings.openClass))
         closeEl($el);
-      }
-      else {
+      else
         openEl($el);
-      }
     }
   }
 
