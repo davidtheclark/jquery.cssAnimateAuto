@@ -118,7 +118,7 @@ A function to call at the end of the CSS transition.
 
 ```javascript
 // e.g.
-$('#element').animateAuto(function() {
+$('#element').cssAnimateAuto(function() {
   alert('You did it!');
 });
 
@@ -126,7 +126,7 @@ function cheer() {
   alert('Hooray!');
 }
 
-$('#element').animateAuto(cheer);
+$('#element').cssAnimateAuto(cheer);
 ```
 
 ## Examples
