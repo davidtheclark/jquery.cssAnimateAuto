@@ -4,7 +4,8 @@ A jQuery plugin that *uses CSS transitions* to animate an element's height or wi
 
 ## Installation
 
-Get the files in the `dist/` directory OR install with [Bower](http://bower.io): `bower install jquery.cssAnimateAuto --save-dev`.
+- EITHER Get [the latest release on Github](https://github.com/davidtheclark/jquery.cssAnimateAuto/releases/latest).
+- OR install with [Bower](http://bower.io): `bower install jquery.cssAnimateAuto --save-dev`.
 
 ## Demonstration
 
