@@ -36,10 +36,9 @@ module.exports = (grunt) ->
         tasks: ["autoprefixer:cssAnimateTest"]
 
     sync:
-      manifests:
-        options:
-          include: ["description"]
-          alt: "cssAnimateAuto.jquery.json"
+      options:
+        include: ["description"]
+        alt: "jquery.cssAnimateAuto.jquery.json"
 
 
   grunt.loadNpmTasks "grunt-contrib-connect"
