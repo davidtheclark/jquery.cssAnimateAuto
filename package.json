@@ -1,7 +1,7 @@
 {
   "name": "jquery.cssAnimateAuto",
   "main": "src/jquery.cssAnimateAuto.js",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "scripts": {
     "prepublish": "bower install"
   },
@@ -10,8 +10,8 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-connect": "~0.5.0",
     "grunt-autoprefixer": "~0.5.0",
-    "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-uglify": "~0.2.7",
-    "grunt-sync-pkg": "~0.1.2"
+    "grunt-sync-pkg": "~0.1.2",
+    "grunt-contrib-concat": "~0.3.0"
   }
 }

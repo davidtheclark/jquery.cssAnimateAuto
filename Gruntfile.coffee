@@ -14,13 +14,17 @@ module.exports = (grunt) ->
           port: 9000
           base: "./"
 
-    copy:
+    concat:
       dist:
+        options:
+          banner: "<%= uglify.dist.options.banner %>"
         files:
           "dist/jquery.cssAnimateAuto.js": "src/jquery.cssAnimateAuto.js"
 
     uglify:
       dist:
+        options:
+          banner: "/*<%= grunt.util.linefeed %>* jquery.cssAnimateAuto - https://github.com/davidtheclark/jquery.cssAnimateAuto<%= grunt.util.linefeed %>* Copyright <%= grunt.template.today('yyyy') %>, David Clark<%= grunt.util.linefeed %>* Released under the MIT license, <%= grunt.template.today('isoDateTime') %><%= grunt.util.linefeed %>*/<%= grunt.util.linefeed %>"
         files:
           "dist/jquery.cssAnimateAuto.min.js": "src/jquery.cssAnimateAuto.js"
 
@@ -43,7 +47,7 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks "grunt-contrib-connect"
   grunt.loadNpmTasks "grunt-contrib-watch"
-  grunt.loadNpmTasks "grunt-contrib-copy"
+  grunt.loadNpmTasks "grunt-contrib-concat"
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-autoprefixer"
   grunt.loadNpmTasks "grunt-sync-pkg"
@@ -53,6 +57,6 @@ module.exports = (grunt) ->
     "watch"
   ]
   grunt.registerTask "build", [
-    "copy:dist"
+    "concat:dist"
     "uglify:dist"
   ]
