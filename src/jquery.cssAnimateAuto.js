@@ -140,7 +140,6 @@
     var argsArray = processArgs.apply(this, arguments);
     return this.each(function () {
       // If element is already transitioning, ignore.
-      console.log($(this).data('transitioning'));
       if ($(this).data('transitioning'))
         return;
       cssAnimateAuto.apply(null, [this].concat(argsArray));
