@@ -4,69 +4,67 @@
 
     var $el = $(element),
         settings = $.extend({}, $.fn.cssAnimateAuto.defaults, options),
-        transArray = settings.transition.split(' '),
         dimension = settings.transition.split(' ')[0],
         oppositeDimension = (dimension === 'height') ? 'width' : 'height',
-        isTransitioning = false;
+        transEnd = (document.body.style.webkitTransition) ? 'webkitTransitionEnd' : 'transitionend';
 
     function isOpen($el) {
       return $el.hasClass(settings.openClass);
     }
 
-    // Determine which function to run based on the setting `action`.
-    switch (settings.action) {
-      case 'open':
-        if (!isOpen($el))
-          openEl($el);
-        break;
-      case 'close':
-        if (isOpen($el))
-          closeEl($el);
-        break;
-      case 'toggle':
-        toggleEl($el);
-        break;
-      default:
-        throw new Error('jquery.cssAnimateAuto only performs the actions "open", "close" and "toggle". You seem to have tried something else.');
+    function nm(eventName) {
+      // Namespace an event.
+      var eName = eventName || '';
+      return eName + '.' + settings.eventNamespace;
     }
 
-    function createTransition($el, cb) {
+    function createTransition($el, thingsToDo) {
+      // `thingsToDo` is passed by `openEl` and `closeEl`,
+      // different for each.
 
-      var transTime;
+      // `transTime` is used the time the fallback; should be
+      // 300ms after the transition should have ended.
+      var transTime = 1000 * (parseFloat($el.css('transition-duration'), 10) + parseFloat($el.css('transition-delay'), 10)) + 300;
+
+      function checkTransitionEnd(e) {
+        if (e.originalEvent.propertyName === dimension) {
+          afterTransition();
+        }
+      }
 
       function afterTransition() {
         removeTransition($el);
-        cb();
+        thingsToDo();
         userCallback();
-        $el.off('.cssaa');
-        isTransitioning = false;
+        $el.off(nm())
+          .data('transitioning', false);
       }
 
-      isTransitioning = true;
+      function fallbackFinisher() {
+        if (!$el.data('transitioning')) {
+          $el.trigger(nm('fallback'));
+        }
+      }
 
       // Create the transition (here in JS instead of in the CSS
       // so it can easily be removed here in JS).
       // jQuery will provide the requisite vendor prefixes.
       $el.css('transition', settings.transition)
-        .on('transitionend.cssaa webkitTransitionEnd.csaa', function(e) {
-          if (e.originalEvent.propertyName === dimension) {
-            afterTransition();
-          }
-        })
-        .on('finished.cssaa', afterTransition)
+        // set listener for transitionend
+        .on(nm(transEnd), checkTransitionEnd)
+        // set listener for fallback
+        .on(nm('fallback'), afterTransition)
+        // indicate that transition is in progress
         .data('transitioning', true);
 
-      transTime = 1000 * (parseFloat($el.css('transition-duration'), 10) + parseFloat($el.css('transition-delay'), 10)) + 300;
-      setTimeout(function() {
-        if (isTransitioning) {
-          $el.trigger('finished.cssaa');
-        }
-      }, transTime);
+      // Fallback should fire just after transition should have ended;
+      // check if transitionend never fired; and if not fire the
+      // fallback event.
+      setTimeout(fallbackFinisher, transTime);
     }
 
     function removeTransition($el) {
-      $el.css('transition', '')
-        .data('transitioning', false);
+      $el.css('transition', '');
     }
 
     function getTargetDimension($el) {
@@ -89,8 +87,8 @@
     }
 
     function openEl($el) {
-      // Create a transition, set a one-time action
-      // for the transition's end, then change
+      // Create a transition, with things to do
+      // when the transition ends, then change
       // the dimension.
       createTransition($el, function(e) {
         $el.css(dimension, 'auto');
@@ -102,10 +100,11 @@
     function closeEl($el) {
       // Set the dimension to a number (it's current state
       // is probably `auto`); then create a transition,
-      // set what to do when the transition ends, and
+      // with things to do when the transition ends, and
       // change the dimension.
       $el.css(dimension, $el.css(dimension));
-      $el[0].offsetHeight; // force repaint (http://n12v.com/css-transition-to-from-auto/)
+      // force repaint (http://n12v.com/css-transition-to-from-auto/)
+      $el[0].offsetHeight = $el[0].offsetHeight;
       createTransition($el, function(e) {
         $el.removeClass(settings.openClass);
       });
@@ -118,6 +117,23 @@
       else
         openEl($el);
     }
+
+    // Determine which function to run based on the setting `action`.
+    switch (settings.action) {
+      case 'open':
+        if (!isOpen($el))
+          openEl($el);
+        break;
+      case 'close':
+        if (isOpen($el))
+          closeEl($el);
+        break;
+      case 'toggle':
+        toggleEl($el);
+        break;
+      default:
+        throw new Error('jquery.cssAnimateAuto only performs the actions "open", "close" and "toggle". You seem to have tried something else.');
+    }
   }
 
   function processArgs() {
@@ -127,7 +143,9 @@
     // This function sorts them out.
     var options = {},
         callback = function(){},
-        l = arguments.length;
+        l = arguments.length,
+        possibleActions = ['open', 'close', 'toggle'],
+        possibleDimensions =['height', 'width'];
     for (var i = 0; i < l; i++) {
       var arg = arguments[i],
           argType = typeof arg;
@@ -135,11 +153,11 @@
         continue;
       switch (argType) {
         case 'string':
-          if (['open', 'close', 'toggle'].indexOf(arg) !== -1) {
+          if (possibleActions.indexOf(arg) !== -1) {
             $.extend(options, { action: arg });
           } else {
             var dimension = arg.split(' ')[0];
-            if (['height', 'width', 'toggle'].indexOf(dimension) !== -1)
+            if (possibleDimensions.indexOf(dimension) !== -1)
               $.extend(options, { transition: arg });
             else
               throw new Error('jquery.cssAnimateAuto doesn\'t know what to do with your argument "' + arg + '"');
@@ -171,7 +189,8 @@
   $.fn.cssAnimateAuto.defaults = {
     transition: 'height 0.3s', // any CSS transition (shorthand) prop
     action: 'toggle', // or 'open' or 'close'
-    openClass: 'is-opened'
+    openClass: 'is-opened',
+    eventNamespace: 'cssaa'
   };
 
 })(jQuery);

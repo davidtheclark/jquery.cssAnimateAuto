@@ -16,7 +16,7 @@ $('#trigger-w-min').click(function() {
 
 $('#trigger-w-restricted').click(function() {
   $('#content-w-restricted').cssAnimateAuto({
-    transition: 'width 0.3s linear'
+    transition: 'width 0.3s linear 0.5s'
   });
 });
 
