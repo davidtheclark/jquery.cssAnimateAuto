@@ -4,8 +4,10 @@
 
     var $el = $(element),
         settings = $.extend({}, $.fn.cssAnimateAuto.defaults, options),
+        transArray = settings.transition.split(' '),
         dimension = settings.transition.split(' ')[0],
-        oppositeDimension = (dimension === 'height') ? 'width' : 'height';
+        oppositeDimension = (dimension === 'height') ? 'width' : 'height',
+        isTransitioning = false;
 
     function isOpen($el) {
       return $el.hasClass(settings.openClass);
@@ -29,18 +31,37 @@
     }
 
     function createTransition($el, cb) {
+
+      var transTime;
+
+      function afterTransition() {
+        removeTransition($el);
+        cb();
+        userCallback();
+        $el.off('.cssaa');
+        isTransitioning = false;
+      }
+
+      isTransitioning = true;
+
       // Create the transition (here in JS instead of in the CSS
       // so it can easily be removed here in JS).
       // jQuery will provide the requisite vendor prefixes.
       $el.css('transition', settings.transition)
-        .one('transitionend webkitTransitionEnd', function(e) {
+        .on('transitionend.cssaa webkitTransitionEnd.csaa', function(e) {
           if (e.originalEvent.propertyName === dimension) {
-            removeTransition($el);
-            cb();
-            userCallback();
+            afterTransition();
           }
         })
+        .on('finished.cssaa', afterTransition)
         .data('transitioning', true);
+
+      transTime = 1000 * (parseFloat($el.css('transition-duration'), 10) + parseFloat($el.css('transition-delay'), 10)) + 300;
+      setTimeout(function() {
+        if (isTransitioning) {
+          $el.trigger('finished.cssaa');
+        }
+      }, transTime);
     }
 
     function removeTransition($el) {
