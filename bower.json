@@ -3,7 +3,7 @@
   "main": [
     "src/jquery.cssAnimateAuto.js"
   ],
-  "version": "0.2.5",
+  "version": "0.3.1",
   "homepage": "https://github.com/davidtheclark/jquery.cssAnimateAuto",
   "authors": [
     "David Clark <david.dave.clark@gmail.com>"
