@@ -19,21 +19,21 @@ You have tried various workarounds (e.g. CSS-transitioning `max-height` instead 
 
 So: **Let's stop messing around and develop an open-source jQuery plugin that solves this silly problem, as well as it can be solved.** All the isolated partially useful snippets -- it's ridiculous --
 
-That is what this simple plugin aspires to be: the open-source jQuery plugin that solves this silly problem.
+That is what this simple plugin aspires to be: an open-source jQuery plugin that solves this silly problem, benefitting from the input of anyone willing to provide input.
 
-Here are some of the features of this plugin that address issues I've had with other snippets:
+**Here are some of this plugin's features that address issues I've had with other snippets:**
 
-- Standard jQuery plugin structure, with modifiable defaults.
-- Customizable CSS transitioning -- that is, you can pass any CSS transition transition you might want, with easing-functions, delays, etc.).
+- Standard jQuery plugin structure, with *modifiable defaults*.
+- Customizable CSS transitioning -- that is, you can pass any CSS transition shorthand you might like, with easing-functions, delays, etc.
 - The transition is applied with JavaScript and removed when it's finished.
-- After the element has animated to `auto`, it's dimension's value actually *is `auto`* -- in case the layout changes again later and you need it not to have a fixed height.
-- You can pass a callback!
+- After the element has animated to `auto`, its dimension's value actually *is `auto`* (not fixed to a calculated "open" value) -- in case the layout changes again later and you need it *not* to have a fixed height.
+- *You can pass a callback!*
 - The dimension-value to which we'll animate should be *accurately* calculated (by creating a clone, appended to the original element's parent, with the same opposite dimension value as the original element).
 - Flexible arguments (see below).
-- An `openClass` is applied (and removed in turn) to allow for compound effects (e.g. after the height slides open, the content fades in).
-- A timed fallback is there when you need it in cases when the `transitionend` event you expected never actually fires (which does happen, sometimes).
+- *An `openClass` is applied* (and removed in turn), to allow for compound effects (e.g. after the height slides open, the content fades in).
+- A *timed fallback* is there when you need it, in cases when the `transitionend` event you expected never actually fires (which does happen, sometimes).
 
-(If, however, this plugin has not solved all the problems that *you* have run into, if you are still dissatisfied, still resorting to workarounds you don't like, please contribute and make the plugin better!)
+*If, however, this plugin has not solved all the problems that YOU have run into, if you are still dissatisfied, still resorting to workarounds you don't like, please contribute and make the plugin better!*
 
 ## Arguments
 
@@ -69,9 +69,9 @@ The following options are available:
  
 A value for [the CSS shorthand property `transition`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition).
 
-The `transition-property` value must be `width` or `height`, and all the other parameters should work just like in CSS.
+*The `transition-property` value must be `width` or `height`*, and all the other parameters should work just like in CSS.
 
-Note this: If you want to animate width, be warned that *width only works if the content has a fixed height, or a min-height and content that will not exceed that min-height as width expands.*
+Note this: If you want to animate width, be warned that *width only works well if the content has a fixed height, or a min-height and content that will not exceed that min-height as width expands.*
 
 ```javascript
 // e.g.
@@ -106,7 +106,7 @@ $('#element').cssAnimateAuto({
 
 What class should be applied to the element when it is opened?
 
-This class is used within the plugin to test whether or not the element is opened. It can also be used by you to add CSS rules to the open state.
+This class is used within the plugin to test whether or not the element is opened. It can also be used by you to add CSS rules unique to the open state.
 
 ```javascript
 // e.g.
@@ -121,7 +121,7 @@ $('#element').cssAnimateAuto({
 - default: `cssaa`
 - passed as: part of the Options object.
 
-A namespace for the events the plugin will add and remove listeners to. You probably won't need to change this -- but if you do, you can.
+A namespace for the events that the plugin will use. You probably won't need to change this -- but if you do need to, you can.
 
 ### Callback
 
@@ -200,10 +200,12 @@ $.fn.cssAnimateAuto.defaults.openClass = 'my-different-class';
 
 ## Known Limitations
 
-- The element whose dimension you are transitioning to/from `auto` *should not have other transitions in place*. Sorry. You are welcome to attach your opacity-transition or whatever it is to a presentational div inside the element.
-- This plugin will only transition in browsers that support CSS transitioning. It doesn't currently bother with a jQuery-animation fallback.
+- The element whose dimension you are transitioning to/from `auto` *should not have other transitions in place*. Sorry. You are welcome to attach your opacity-transition or whatever it is to a presentational div inside the element. The `openClass` is there to help you do this.
+- As you may have guessed, this plugin will only transition in browsers that support CSS transitioning. It doesn't currently bother with a jQuery-animation fallback or anything like that.
 
 ## References
+
+I found these articles particularly helpful.
 
 - [CSS-Tricks: "Animate Height/Width to 'Auto'" (article and comments)](http://css-tricks.com/snippets/jquery/animate-heightwidth-to-auto/)
 - [Nikita Vasilyev: "CSS transition from/to auto values"](http://n12v.com/css-transition-to-from-auto/)
