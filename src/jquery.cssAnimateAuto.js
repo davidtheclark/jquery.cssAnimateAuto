@@ -110,7 +110,7 @@
       });
       // if there is a 'to' setting, go to that; otherwise,
       // go to nothing
-      var to = (settings.to) ? settings.to.substring(3) : '';
+      var to = (settings.to) ? settings.to : '';
       $el.css(dimension, to);
     }
 
@@ -159,7 +159,7 @@
           if (possibleActions.indexOf(arg) !== -1) {
             $.extend(options, { action: arg });
           } else if (arg.substring(0,2) === 'to') {
-            $.extend(options, { to: arg });
+            $.extend(options, { to: arg.substring(3) });
           } else {
             var dimension = arg.split(' ')[0];
             if (possibleDimensions.indexOf(dimension) !== -1)
