@@ -9,7 +9,7 @@
         transEnd = (document.body.style.webkitTransition) ? 'webkitTransitionEnd' : 'transitionend';
 
     function isOpen($el) {
-      return $el.hasClass(settings.openClass);
+      return $el.hasClass(settings.openClass) || $el.css(dimension) === getTargetDimension($el);
     }
 
     function nm(eventName) {
@@ -108,7 +108,10 @@
       createTransition($el, function(e) {
         $el.removeClass(settings.openClass);
       });
-      $el.css(dimension, '');
+      // if there is a 'to' setting, go to that; otherwise,
+      // go to nothing
+      var to = (settings.to) ? settings.to.substring(3) : '';
+      $el.css(dimension, to);
     }
 
     function toggleEl($el) {
@@ -155,6 +158,8 @@
         case 'string':
           if (possibleActions.indexOf(arg) !== -1) {
             $.extend(options, { action: arg });
+          } else if (arg.substring(0,2) === 'to') {
+            $.extend(options, { to: arg });
           } else {
             var dimension = arg.split(' ')[0];
             if (possibleDimensions.indexOf(dimension) !== -1)
@@ -190,7 +195,8 @@
     transition: 'height 0.3s', // any CSS transition (shorthand) prop
     action: 'toggle', // or 'open' or 'close'
     openClass: 'is-opened',
-    eventNamespace: 'cssaa'
+    eventNamespace: 'cssaa',
+    to: false
   };
 
 })(jQuery);

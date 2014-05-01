@@ -8,6 +8,10 @@ $('#trigger-h-restricted').click(function() {
   $('#content-h-restricted').cssAnimateAuto('height 1s linear');
 });
 
+$('#trigger-h-starting').click(function() {
+  $('#content-h-starting').cssAnimateAuto('height 1s linear', 'to 5px');
+});
+
 // width
 
 $('#trigger-w-min').click(function() {

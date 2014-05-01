@@ -28,3 +28,7 @@
   background: black;
   color: white;
 }
+
+#content-h-starting {
+  height: auto;
+}
