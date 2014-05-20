@@ -9,7 +9,7 @@ $('#trigger-h-restricted').click(function() {
 });
 
 $('#trigger-h-starting').click(function() {
-  $('#content-h-starting').cssAnimateAuto('height 1s linear', 'to 5px');
+  $('#content-h-starting').cssAnimateAuto('height 1s linear', 'to 0');
 });
 
 // width
