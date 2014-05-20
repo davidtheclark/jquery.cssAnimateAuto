@@ -1,4 +1,4 @@
-0.3.3
+0.3.2
 - Added the `to` option.
 
 0.3.0
