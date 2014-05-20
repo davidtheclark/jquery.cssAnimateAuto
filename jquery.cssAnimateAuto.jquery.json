@@ -1,7 +1,7 @@
 {
   "name": "jquery.cssAnimateAuto",
   "title": "CSS Animate Auto",
-  "description": "A jQuery plugin that uses CSS transitions to animate an element's height or width to auto.",
+  "description": "A jQuery plugin that uses CSS transitions to animate an element's height or width to or from auto.",
   "keywords": [
     "jQuery",
     "animation",
@@ -11,7 +11,7 @@
     "width",
     "transition"
   ],
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": {
     "name": "David Clark",
     "email": "david.dave.clark@gmail.com"

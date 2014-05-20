@@ -32,6 +32,7 @@ That is what this simple plugin aspires to be: an open-source jQuery plugin that
 - Flexible arguments (see below).
 - *An `openClass` is applied* (and removed in turn), to allow for compound effects (e.g. after the height slides open, the content fades in).
 - A *timed fallback* is there when you need it, in cases when the `transitionend` event you expected never actually fires (which does happen, sometimes).
+- Go *from* `auto` *to* a defined value.
 
 *If, however, this plugin has not solved all the problems that YOU have run into, if you are still dissatisfied, still resorting to workarounds you don't like, please contribute and make the plugin better!*
 
@@ -53,7 +54,8 @@ Pass an object argument and it will be interpreted as `options`. The default opt
   transition: 'height 0.3s', // any CSS transition (shorthand) prop
   action: 'toggle', // or 'open' or 'close'
   openClass: 'is-opened',
-  eventNamespace: 'cssaa'
+  eventNamespace: 'cssaa',
+  to: false // any height value
 }
 ```
 
@@ -66,7 +68,7 @@ The following options are available:
 - type: `String`
 - default: `'height 0.3s'`
 - passed as: a string *or* part of the Options object.
- 
+
 A value for [the CSS shorthand property `transition`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition).
 
 *The `transition-property` value must be `width` or `height`*, and all the other parameters should work just like in CSS.
@@ -122,6 +124,26 @@ $('#element').cssAnimateAuto({
 - passed as: part of the Options object.
 
 A namespace for the events that the plugin will use. You probably won't need to change this -- but if you do need to, you can.
+
+#### to
+
+- type: `String`
+- default: `false`
+- passed as: a string *or* part of the Options object
+
+Tell the plugin you are going *from* `auto` *to* a defined value, instead of the other way around -- e.g. your element starts open (at `height: auto`), and the first thing you're going to do is close it to `height: 0`. *Any CSS length value can be used*, not just pixels.
+
+```javascript
+// e.g.
+$('#element').cssAnimateAuto('to 0');
+$('#element').cssAnimateAuto({
+  to: '0'
+});
+$('#element').cssAnimateAuto('to 3rem');
+$('#element').cssAnimateAuto({
+  to: '30px'
+});
+```
 
 ### Callback
 
@@ -193,6 +215,9 @@ $('#element').cssAnimateAuto({
 $('#element').cssAnimateAuto('open', function() {
   alert('Three cheers for you!');
 }, { openClass: 'thing-active' });
+
+// go from auto to zero
+$('#element').cssAnimateAuto('to 0');
 
 // Change the default openClass for your project
 $.fn.cssAnimateAuto.defaults.openClass = 'my-different-class';
