@@ -6,7 +6,7 @@ function cssAnimateAuto(element, options, userCallback) {
       settings = $.extend({}, $.fn.cssAnimateAuto.defaults, options),
       dimension = settings.transition.split(' ')[0],
       oppositeDimension = (dimension === 'height') ? 'width' : 'height',
-      transEnd = (document.body.style.webkitTransition) ? 'webkitTransitionEnd' : 'transitionend';
+      transEnd = (typeof document.body.style.webkitTransition !== 'undefined') ? 'webkitTransitionEnd' : 'transitionend';
 
   function isOpen($el) {
     return $el.hasClass(settings.openClass) || $el.css(dimension) === getTargetDimension($el);
