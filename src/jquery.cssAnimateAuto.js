@@ -33,7 +33,7 @@ function cssAnimateAuto(element, options, userCallback) {
       // Do the things that are required by the plugin
       // and then the user callback.
       thingsToDo();
-      userCallback();
+      userCallback.call($el);
       // Remove listener and allow another transition.
       $el.off(namespaceEvent())
         .data('transitioning', false);
