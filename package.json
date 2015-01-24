@@ -1,10 +1,7 @@
 {
   "name": "jquery.cssAnimateAuto",
   "main": "src/jquery.cssAnimateAuto.js",
-  "version": "0.3.2",
-  "scripts": {
-    "prepublish": "bower install"
-  },
+  "version": "0.3.3",
   "description": "A jQuery plugin that uses CSS transitions to animate an element's height or width to or from auto.",
   "devDependencies": {
     "grunt-contrib-watch": "~0.5.3",

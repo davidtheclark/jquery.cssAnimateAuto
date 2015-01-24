@@ -1,3 +1,7 @@
+0.3.3
+- Fixed `this` when plugin is used in callback function (thanks to @3spin-dev).
+- Fixed `webkitTransition` detection for iOS6 (thanks to @3spin-dev).
+
 0.3.2
 - Added the `to` option.
 
