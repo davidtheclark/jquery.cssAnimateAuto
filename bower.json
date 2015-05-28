@@ -1,7 +1,7 @@
 {
   "name": "jquery.cssAnimateAuto",
   "main": [
-    "src/jquery.cssAnimateAuto.js"
+    "dist/jquery.cssAnimateAuto.js"
   ],
   "version": "0.3.3",
   "homepage": "https://github.com/davidtheclark/jquery.cssAnimateAuto",
