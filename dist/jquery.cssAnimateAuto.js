@@ -1,7 +1,7 @@
 /*
 * jquery.cssAnimateAuto - https://github.com/davidtheclark/jquery.cssAnimateAuto
-* Copyright 2014, David Clark
-* Released under the MIT license, 2014-05-19T21:03:39
+* Copyright 2015, David Clark
+* Released under the MIT license, 2015-01-24T11:19:59
 */
 ;(function($) {
 
@@ -11,7 +11,7 @@ function cssAnimateAuto(element, options, userCallback) {
       settings = $.extend({}, $.fn.cssAnimateAuto.defaults, options),
       dimension = settings.transition.split(' ')[0],
       oppositeDimension = (dimension === 'height') ? 'width' : 'height',
-      transEnd = (document.body.style.webkitTransition) ? 'webkitTransitionEnd' : 'transitionend';
+      transEnd = (typeof document.body.style.webkitTransition !== 'undefined') ? 'webkitTransitionEnd' : 'transitionend';
 
   function isOpen($el) {
     return $el.hasClass(settings.openClass) || $el.css(dimension) === getTargetDimension($el);
@@ -38,7 +38,7 @@ function cssAnimateAuto(element, options, userCallback) {
       // Do the things that are required by the plugin
       // and then the user callback.
       thingsToDo();
-      userCallback();
+      userCallback.call($el);
       // Remove listener and allow another transition.
       $el.off(namespaceEvent())
         .data('transitioning', false);
