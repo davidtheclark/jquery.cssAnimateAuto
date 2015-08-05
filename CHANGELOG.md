@@ -1,3 +1,6 @@
+0.4.0
+- Update dependencies and publish via npm.
+
 0.3.4
 - Fixed `bower.json` (thanks to @JodiWarren).
 

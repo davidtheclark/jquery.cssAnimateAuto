@@ -1,9 +1,20 @@
 /*
 * jquery.cssAnimateAuto - https://github.com/davidtheclark/jquery.cssAnimateAuto
 * Copyright 2015, David Clark
-* Released under the MIT license, 2015-01-24T11:19:59
+* Released under the MIT license, 2015-08-04T19:24:35
 */
-;(function($) {
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // Node/CommonJS
+    module.exports = factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function ($) {
 
 function cssAnimateAuto(element, options, userCallback) {
 
@@ -210,4 +221,4 @@ $.fn.cssAnimateAuto.defaults = {
   to: false // any height value
 };
 
-})(jQuery);
+}));
