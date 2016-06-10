@@ -1,6 +1,12 @@
 {
   "name": "jquery.cssanimateauto",
   "main": "src/jquery.cssAnimateAuto.js",
+  "typings": "definitions/jquery.cssAnimateAuto.d.ts",
+  "typescript": {
+    "definitions": [
+      "definitions/jquery.cssAnimateAuto.d.ts"
+    ]
+  },
   "version": "0.4.0",
   "description": "A jQuery plugin that uses CSS transitions to animate an element's height or width to or from auto.",
   "devDependencies": {
