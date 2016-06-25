@@ -1,5 +1,7 @@
 # jquery.cssAnimateAuto
 
+> **CURRENTLY UNMAINTAINED: LOOKING FOR A NEW MAINTAINER!** If you like and use this module, please consider taking over. File an issue to let me know you're interested!
+
 A jQuery plugin that *uses CSS transitions* to animate an element's height or width to or from `auto`.
 
 ## Installation
